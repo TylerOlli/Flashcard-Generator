@@ -157,3 +157,137 @@ function saveCloze(flashcard){
 }
 
 
+//Notice we're using 'recursion' to call basicQuiz() from inside of itself a number of times that
+//is equal to the number of indices in basicExports.arr
+function basicQuiz(){
+	if(count < basicExports.arr.length){
+
+		inquirer.prompt([
+
+			{
+				type: "input",
+				message: `${basicExports.arr[count].front}`,
+				name: "question",
+				default: ""
+			}
+
+		]).then(function(data){
+			//If right, increase correct answers, else increase wrong answers
+			if(data.question === basicExports.arr[count].back) {
+				console.log('correct');
+				rightCount++;
+			}else {
+				console.log(basicExports.arr[count].back);
+				wrongCount++;
+			};
+
+			count++;
+			basicQuiz();
+
+		});
+
+	}else {
+		//When count is equal to the number of indices in basicExports.arr, we can break our loop
+		gameOverBasic();
+	};
+
+};
+
+//Notice we're using 'recursion' to call clozeQuiz() from inside of itself a number of times that
+//is equal to the number of indices in clozeExports.arr
+function clozeQuiz(){
+	if(count < clozeExports.arr.length){
+
+		inquirer.prompt([
+
+			{
+				type: "input",
+				message: `${clozeExports.arr[count].displayQuestion()}`,
+				name: "question",
+				default: ""
+			}
+
+		]).then(function(data){
+			//If right, increase correct answers, else increase wrong answers
+			if(data.question === clozeExports.arr[count].cloze) {
+				console.log('correct');
+				rightCount++;
+			}else {
+				console.log(clozeExports.arr[count].question);
+				wrongCount++;
+			};
+
+			count++;
+			clozeQuiz();
+
+		});
+
+	}else {
+		//When count is equal to the number of indices in clozeExports.arr, we can break our loop
+		gameOver();
+	};
+
+};
+
+//This closes out our quiz and provides a summary of the user's performance then
+//allows the user to take it again or return to the main menu
+function gameOver(){
+	console.log(`You had ${rightCount} right answers and ${wrongCount} wrong answers`);
+	console.log("");
+
+	inquirer.prompt([
+
+		{
+			type: "confirm",
+			name: "confirm",
+			message: "Play again?"
+		}
+
+	]).then(function(data){
+
+		count = 0;
+		rightCount = 0;
+		wrongCount = 0;
+
+		if(data.confirm){
+			quiz();
+		}else {
+			start();
+		}
+
+	});
+
+};
+
+//This closes out our quiz and provides a summary of the user's performance then
+//allows the user to take it again or return to the main menu
+function gameOverBasic(){
+	console.log(`You had ${rightCount} right answers and ${wrongCount} wrong answers`);
+	console.log("");
+
+	inquirer.prompt([
+
+		{
+			type: "confirm",
+			name: "confirm",
+			message: "Play again?"
+		}
+
+	]).then(function(data){
+
+		count = 0;
+		rightCount = 0;
+		wrongCount = 0;
+
+		if(data.confirm){
+			basicQuiz();
+		}else {
+			start();
+		}
+
+	});
+
+}
+
+//Starts the CLI when file is ran
+start();
