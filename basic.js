@@ -8,10 +8,10 @@ var BasicFlashcard = function(front, back){
 var arr = [];
 
 var questions = {
-	"In what county does Charlotte reside": "Mecklenburg",
-	"What fast food chain was founded in Charlotte": "Bojangles",
-	"What major bank is located in Charlotte": "Bank of America",
-	"What is the name of our football team's mascot": "Sir Purr"
+	"In what county does Charlotte reside?": "Mecklenburg",
+	"What fast food chain was founded in Charlotte?": "Bojangles",
+	"What major bank is located in Charlotte?": "Bank of America",
+	"What is the name of our football team's mascot?": "Sir Purr"
 };
 
 //Loop through questions and construct objects
