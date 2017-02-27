@@ -14,7 +14,7 @@ var questions = {
 	"What is the name of our football team's mascot": "Sir Purr"
 };
 
-//Loop through material and construct objects
+//Loop through questions and construct objects
 for (var key in questions){
 	arr.push(new BasicFlashcard(key, questions[key]));
 };
