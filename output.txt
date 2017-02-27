@@ -1,0 +1,4 @@
+Front: What is the captial of New York? Back: Albany 
+Front: What is the capital of New York? Back: Albany 
+Cloze: Albany Question: Albany is the capital of New York 
+Cloze: Thriller Question: Thriller is Michael Jackson's biggest hit. 
